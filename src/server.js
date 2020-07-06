@@ -1,17 +1,19 @@
 const express = require('express')
-const app = express()
+const app = express();
 const cors = require('cors');
 const bodyParser = require('body-parser');
-const {port} = require("./src/config")
-const db = require('./src/util/db_con');
-const query = require('./src/util/query');
+const {port} = require("./config")
+const route = require('./routes');
+
+
+
 
 
 app.use(cors());
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }))
 // parse various different custom JSON types as JSON
-app.use(bodyParser.json({ type: 'application/*+json' }));
+app.use(bodyParser.json({ type: 'application/json' }));
 // parse some custom thing into a Buffer
 app.use(bodyParser.raw({ type: 'application/vnd.custom-type' }));
 // parse an HTML body into a string
@@ -25,20 +27,25 @@ app.use((req, res, next) => {
   });
 
 
-app.get('/api/list', (req, res) => {
-    db( async (connection)=>{
-        const results = await query(connection, 'SELECT * FROM USER').catch(console.log);
-        return res.json({ results });
-    })
- });
+
+      
+app.use('/api', route);
 
 
- app.get('/api/list2', (req, res) => {
-    db( async (connection)=>{
-        const results = await query(connection, `SELECT * FROM USER WHERE ID=?`,['ADMIN']).catch(console.log);
-        return res.json({ results });
-    })
- });
+// app.get('/api/list', (req, res) => {
+//     db( async (connection)=>{
+//         const results = await query(connection, 'SELECT * FROM USER').catch(console.log);
+//         return res.json({ results });
+//     })
+//  });
+
+
+//  app.get('/api/list2', (req, res) => {
+//     db( async (connection)=>{
+//         const results = await query(connection, `SELECT * FROM USER WHERE ID=?`,['ADMIN']).catch(console.log);
+//         return res.json({ results });
+//     })
+//  });
 
 
 // app.get('/', (req, res) => res.send('Hello World!'))
