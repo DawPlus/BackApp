@@ -1,8 +1,15 @@
-var mysql = require('mysql');
-const config = require("../config").dbConfig
-const logger = require('./logger');
+const mysql   = require('mysql');
+const logger  = require('./logger');
+require('dotenv').config();
 
-const pool = mysql.createPool(config);
+const pool = mysql.createPool({
+  host            :  process.env.HOST,
+  user            :  process.env.DB_USER,
+  port            :  process.env.DB_PORT,
+  password        :  process.env.DB_PW,
+  database        :  process.env.DB_DATABASE,
+  connectionLimit :  process.env.DB_CONNCETION_LIMIT
+});
 logger.info('Connection pool created.');
 
 pool.on('acquire', function (connection) {

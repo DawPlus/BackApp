@@ -6,10 +6,10 @@ const db = require('../util/db_con');
 const {isTokken, getTokken} = require("../util/tokken");
 const base64 =  require("js-base64").Base64;
 
-
 // 로그인 
 router.post('/login', (req, res) => {
   const {id, password} = req.body;
+  console.log(id, password)
   const login = "SELECT ID, NAME, PASSWORD FROM USER WHERE ID=? AND PASSWORD = ?";
   db( async (connection)=>{
   try{
@@ -47,8 +47,11 @@ router.post("/check", (req, res) => {
       db( async (connection)=>{
         try{
           const decoded = isTokken(tokken);
+          console.log(decoded.userInfo)
           // 토근에 있는 UserInfo 
           const {ID, PASSWORD} = decoded.userInfo;   
+
+
           const rows = await query(connection, check, [ID, PASSWORD]).catch(err=>{throw err});
       
             if(rows[0] === undefined){

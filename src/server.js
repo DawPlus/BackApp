@@ -2,12 +2,8 @@ const express = require('express')
 const app = express();
 const cors = require('cors');
 const bodyParser = require('body-parser');
-const {port} = require("./config")
 const route = require('./routes');
-
-
-
-
+require('dotenv').config();
 
 app.use(cors());
 // parse application/x-www-form-urlencoded
@@ -52,4 +48,4 @@ app.use('/api', route);
 // app.post("/hello", (req, res) => res.send('Hello POST World!'))
 // app.all('/ping', (req, res) => res.send(new Date()))
 
-app.listen(port, () => console.log(`Example app listening on port ${port}!`))
+app.listen(process.env.PORT, () => console.log(`Example app listening on port ${process.env.PORT}!`))
