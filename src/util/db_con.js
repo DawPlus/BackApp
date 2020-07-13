@@ -24,7 +24,7 @@ pool.on('release', function (connection) {
   logger.info(`Connection ${connection.threadId} released`);
 });
 
-const getConn = async function(callback) {
+var getConn = async function(callback) {
   pool.getConnection(function(err, connection) {
     if(!err){
       callback(connection);

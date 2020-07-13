@@ -21,6 +21,7 @@ router.post('/login', (req, res) => {
       }
           const userInfo  = rows[0]||{}; 
           const tokken    =  getTokken(userInfo);
+          console.log(tokken);
           const jsonData  = {
                 authrization : true
                 , tokken     : tokken
@@ -40,14 +41,14 @@ router.post('/login', (req, res) => {
 // 토큰 확인
 router.post("/check", (req, res) => {
      const {tokken} = req.body;
+     const decoded = isTokken(tokken);
+     if(!decoded) return res.status(500).json({authrization : false});
+
       /* Query List */
       const check = "SELECT ID, NAME, PASSWORD FROM USER WHERE ID=? AND PASSWORD = ?";
       
-      
       db( async (connection)=>{
         try{
-          const decoded = isTokken(tokken);
-          console.log(decoded.userInfo)
           // 토근에 있는 UserInfo 
           const {ID, PASSWORD} = decoded.userInfo;   
 
@@ -56,8 +57,9 @@ router.post("/check", (req, res) => {
       
             if(rows[0] === undefined){
                   res.status(500)//
-                  return res.json({error : "사용자가 없습니다.",
-                  authrization : true
+                  return res.json({
+                    error : "사용자가 없습니다.",
+                  authrization : false
                 })
             }
                 const userInfo  = rows[0]||{}; 
@@ -72,7 +74,7 @@ router.post("/check", (req, res) => {
                   };
               return res.json(jsonData); 
           }catch(err){
-            console.log("문제잇다");
+            console.log(err);
             return res.status(500).json({authrization : false})
           }   
         });
