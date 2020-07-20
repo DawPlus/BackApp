@@ -4,15 +4,20 @@ const router = express.Router();
 const query = require('../util/query');
 const db = require('../util/db_con');
 const {isTokken, getTokken} = require("../util/tokken");
-const base64 =  require("js-base64").Base64;
+var base64 = require('base-64');
 
 // 로그인 
 router.post('/login', (req, res) => {
+
+
   const {id, password} = req.body;
-  console.log(id, password)
+
   const login = "SELECT ID, NAME, PASSWORD FROM USER WHERE ID=? AND PASSWORD = ?";
   db( async (connection)=>{
   try{
+   
+
+
       const rows = await query(connection, login, [id, base64.encode(password)]).catch(err=>{throw err});
 
       if(rows[0] === undefined){
