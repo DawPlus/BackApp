@@ -27,7 +27,7 @@ app.use((req, res, next) => {
       
 app.use('/api', route);
 
-app.use('/uploads', express.static('uploads'));
+app.use('/public',express.static('uploads'));
 // app.get('/api/list', (req, res) => {
 //     db( async (connection)=>{
 //         const results = await query(connection, 'SELECT * FROM USER').catch(console.log);
