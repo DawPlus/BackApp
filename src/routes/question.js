@@ -37,14 +37,15 @@ router.put('/', (req, res) => {
 
 // 목록 조회 조회 
 router.post('/list', (req, res) => {
+  console.log("hello?????????");
   db( async (connection)=>{
   try{
-      const rows = await query(connection, list).catch(err=>{throw err});
+      const rows = await query(connection, LIST).catch(err=>{throw err});
       
       if(rows[0] === undefined){
             return res.json({})
       }
-      
+      console.log(rows);
         return res.json({
             list : rows
         }); 

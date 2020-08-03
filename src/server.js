@@ -3,7 +3,7 @@ const app = express();
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const route = require('./routes');
-require('dotenv').config();
+const path = require('path');
 
 app.use(cors());
 // parse application/x-www-form-urlencoded
@@ -23,11 +23,19 @@ app.use((req, res, next) => {
   });
 
 
-
+console.log(path.resolve(__dirname, '../build/index.html'));
       
 app.use('/api', route);
+app.use('/public', express.static(__dirname + '/uploads'));
 
-app.use('/public',express.static('uploads'));
+app.use('/', express.static(path.resolve(__dirname, '../build')));
+app.get('*', (req, res, next) => {
+  console.log(req.path.split('/')[1]);
+    if(req.path.split('/')[1] === 'static') return next();
+    res.sendFile(path.resolve(__dirname, '../build/index.html'));
+});
+
+//app.use('/public',express.static('uploads'));
 // app.get('/api/list', (req, res) => {
 //     db( async (connection)=>{
 //         const results = await query(connection, 'SELECT * FROM USER').catch(console.log);
@@ -48,4 +56,4 @@ app.use('/public',express.static('uploads'));
 // app.post("/hello", (req, res) => res.send('Hello POST World!'))
 // app.all('/ping', (req, res) => res.send(new Date()))
 
-app.listen(process.env.PORT, () => console.log(`Example app listening on port ${process.env.PORT}!`))
+app.listen(8080, () => console.log(`Example app listening on port ${8080}!`))

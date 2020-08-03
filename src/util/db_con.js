@@ -1,14 +1,14 @@
 const mysql   = require('mysql');
 const logger  = require('./logger');
-require('dotenv').config();
+
 
 const pool = mysql.createPool({
-  host            :  process.env.HOST,
-  user            :  process.env.DB_USER,
-  port            :  process.env.DB_PORT,
-  password        :  process.env.DB_PW,
-  database        :  process.env.DB_DATABASE,
-  connectionLimit :  process.env.DB_CONNCETION_LIMIT
+  host            :  "db.express.gabia.io",
+  user            :  "express",
+  port            :  "3306",
+  password        :  "5927ab12!@",
+  database        :  "dbexpress",
+  connectionLimit :  "10"
 });
 logger.info('Connection pool created.');
 

@@ -2,8 +2,8 @@
   "canvas": {
     "width": 2000,
     "height": 2000,
-    "scrollTop": 62,
-    "scrollLeft": 5,
+    "scrollTop": 63,
+    "scrollLeft": 4,
     "show": {
       "tableComment": true,
       "columnComment": true,
@@ -17,7 +17,7 @@
     },
     "database": "MySQL",
     "databaseName": "",
-    "canvasType": "SQL",
+    "canvasType": "ERD",
     "language": "GraphQL",
     "tableCase": "pascalCase",
     "columnCase": "camelCase",
@@ -318,6 +318,90 @@
           "widthComment": 60
         },
         "id": "5364bfa4-b5d9-3ff5-86b7-6c6041e20158"
+      },
+      {
+        "name": "API",
+        "comment": "",
+        "columns": [
+          {
+            "name": "API_ID",
+            "comment": "",
+            "dataType": "INT",
+            "default": "",
+            "option": {
+              "autoIncrement": true,
+              "primaryKey": false,
+              "unique": true,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "a409772d-0a0d-41d6-ff9b-b334285ac157"
+          },
+          {
+            "name": "NAME",
+            "comment": "",
+            "dataType": "VARCHAR(255)",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 60,
+              "widthDataType": 90,
+              "widthDefault": 60
+            },
+            "id": "cdb6eb9a-fc5e-0dce-27e3-f58f36d9d3b6"
+          },
+          {
+            "name": "URL",
+            "comment": "",
+            "dataType": "VARCHAR(500)",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 60,
+              "widthDataType": 90,
+              "widthDefault": 60
+            },
+            "id": "b432e8cc-4325-f073-75eb-fcdb7b8157f7"
+          }
+        ],
+        "ui": {
+          "active": false,
+          "left": 78,
+          "top": 740,
+          "zIndex": 253,
+          "widthName": 60,
+          "widthComment": 60
+        },
+        "id": "c56867e6-a407-712b-0d82-2d3afc5fe8c0"
       }
     ],
     "indexes": []
