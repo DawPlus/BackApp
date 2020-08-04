@@ -3,7 +3,7 @@ const express = require("express");
 const router = express.Router();
 const query = require('../util/query');
 const db = require('../util/db_con');
-const {LIST, NEW, DELETE, VIEW} = require("../query/exceptions");
+const {LIST, VIEW} = require("../query/exceptions");
 
 
 // API 목록 조회 조회 

@@ -1,21 +1,10 @@
 const LIST = `
-    SELECT API_ID
-        , NAME
-        , URL
-        , DESCRIPTION
-    FROM API
-`;
-
-const NEW = `
-    INSERT INTO API(
-        NAME
-        , URL
-        , DESCRIPTION
-    )VALUES(
-            ?
-        ,   ?
-        ,   ?
-    )
+    SELECT exception_id
+        , title
+        , exceptions
+        , device_id
+        , save_date
+    FROM EXCEPTIONS
 `;
 
 const DELETE = `
@@ -26,7 +15,6 @@ const DELETE = `
 
 module.exports={
     LIST ,
-    NEW,
     DELETE
     
 }
