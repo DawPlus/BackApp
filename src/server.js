@@ -22,11 +22,11 @@ app.use((req, res, next) => {
     next();
   });
 
-
-console.log(path.resolve(__dirname, '../build/index.html'));
       
 app.use('/api', route);
-app.use('/public', express.static(__dirname + '/uploads'));
+app.use('/static/map', express.static(__dirname + '/uploads/map'));
+
+
 
 app.use('/', express.static(path.resolve(__dirname, '../build')));
 app.get('*', (req, res, next) => {

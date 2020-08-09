@@ -4,12 +4,20 @@ const router = express.Router();
 const path = require('path');
 var mime = require('mime');
 var fs = require('fs');
+const query = require('../util/query');
+const db = require('../util/db_con');
+const {NEW, SUB} = require("../query/file");
+
+const uploadFolder =  "src/uploads/map"
+const urlPrefix = "/static/map/";
+
 
 
 var multer = require('multer'); // express에 multer모듈 적용 (for 파일업로드)
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, "uploads/",) // cb 콜백함수를 통해 전송된 파일 저장 디렉토리 설정
+    
+    cb(null,uploadFolder) // cb 콜백함수를 통해 전송된 파일 저장 디렉토리 설정
   },
   filename: function (req, file, cb) {
     cb(null, new Date().valueOf() + path.extname(file.originalname));
@@ -32,14 +40,47 @@ router.get('/', (req, res) => {
 });
 
 router.post('/upload', upload.single('file'), function(req, res){
+  
+  // Team ID  
+  const {team_id}= req.body;
+  // File Info 
+  const {originalname, mimetype, destination, filename, path, size} = req.file;
+  // File URL 
+  const url = urlPrefix+filename;
 
-  console.log(req.body);
-  const {test, test2 }= req.body;
-  console.log(test, test2);
 
-    res.send({filePath : `http://localhost:3001/public/${req.file.filename}`})
+  db( async (connection)=>{
+    try{
+        const row =  await query(connection
+          , NEW
+          ,[originalname, mimetype, destination, filename, path, size, team_id, url]
+        ).catch(err=>{throw err});
 
-    console.log(req.file); // 콘솔(터미널)을 통해서 req.file Object 내용 확인 가능.
+          // SBU INSERT 
+        db( async (connection)=>{
+          try{
+              const sub =  await query(connection
+                , SUB
+                ,[row.insertId, urlPrefix+filename]
+              ).catch(err=>{throw err});
+                  console.log(sub);
+              }catch(err){
+                  return res.status(500).json(err)
+              }   
+          });
+
+
+          return res.json({
+              url 
+          })
+
+        }catch(err){
+            return res.status(500).json(err)
+        }   
+    });
+
+  
+   // console.log(req.file); // 콘솔(터미널)을 통해서 req.file Object 내용 확인 가능.
   });
 
 
