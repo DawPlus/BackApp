@@ -3,7 +3,7 @@ const express = require("express");
 const router = express.Router();
 const query = require('../util/query');
 const db = require('../util/db_con');
-const {LIST, NEW, DELETE  } = require("../query/init");
+const {LIST, NEW, DELETE  } = require("../query/API");
 
 
 // API 목록 조회 조회 
@@ -13,10 +13,11 @@ router.post('/', (req, res) => {
         const rows = await query(connection, LIST).catch(err=>{throw err});
         
         if(rows[0] === undefined){
-                return res.json({})
+            return res.json({})
         }
-        console.log(rows);
+        
             return res.json({
+                message : "정상 조회 되었습니다.",
                 list : rows
             }); 
         }catch(err){
@@ -32,7 +33,11 @@ router.post('/new', (req, res) => {
     db( async (connection)=>{
       try{
           const rows = await query(connection, NEW,[name, url, description]).catch(err=>{throw err});
-          return res.json(rows)
+          return res.json({
+                    message :"정상 등록되었습니다.",
+                    info : rows
+                
+                })
          
           }catch(err){
               return res.status(500).json(err)
@@ -44,11 +49,15 @@ router.post('/new', (req, res) => {
   
 // API 삭제
 router.delete('/', (req, res) => {
-    const {api_id} = req.body;
+    const {id} = req.body;
     db( async (connection)=>{
       try{
-          const rows = await query(connection, DELETE,[api_id]).catch(err=>{throw err});
-          return res.json(rows)
+          const rows = await query(connection, DELETE,[id]).catch(err=>{throw err});
+          return res.json({
+                message : "정상처리 되었습니다.",
+                info : rows
+        
+            })
           }catch(err){
               return res.status(500).json(err)
           }   

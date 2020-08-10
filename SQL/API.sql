@@ -1,7 +1,8 @@
-CREATE TABLE dbexpress.API (
-	API_ID INT auto_increment NOT NULL,
+CREATE TABLE dbforesthealing113.API (
+	API_ID BIGINT auto_increment NOT NULL,
 	NAME varchar(100) NULL,
 	URL varchar(500) NULL,
+	DESCRIPTION varchar(1000) NULL,
 	CONSTRAINT API_PK PRIMARY KEY (API_ID)
 )
 ENGINE=InnoDB
