@@ -4,38 +4,45 @@ const router = express.Router();
 const query = require('../util/query');
 const db = require('../util/db_con');
 const {isTokken, getTokken} = require("../util/tokken");
+const {SELECT_ADMIN}  = require("../query/Admin");
 var base64 = require('base-64');
+
+
+
 
 // 로그인 
 router.post('/login', (req, res) => {
-
-
   const {id, password} = req.body;
+  const returnJson = {
+        result : null, 
+        message : "",
+        data : null
+      , 
+  }
 
-  const login = "SELECT ID, NAME, PASSWORD FROM USER WHERE ID=? AND PASSWORD = ?";
   db( async (connection)=>{
-  try{
-   
-
-
-      const rows = await query(connection, login, [id, base64.encode(password)]).catch(err=>{throw err});
+    try{
+      const rows = await query(connection, SELECT_ADMIN, [id, base64.encode(password)]).catch(err=>{throw err});
 
       if(rows[0] === undefined){
             res.status(500)//
-            return res.json({error : "사용자가 없습니다."})
+            returnJson.result = false;
+            returnJson.message = "로그인중 오류가 발생했습니다." ;
+            return res.json(returnJson);
       }
-          const userInfo  = rows[0]||{}; 
+      
+          const userInfo  = rows[0]; 
           const tokken    =  getTokken(userInfo);
-          console.log(tokken);
-          const jsonData  = {
-                authrization : true
-                , tokken     : tokken
-                , userInfo : {
-                    userid : userInfo.ID
-                    , name : userInfo.NAME
-                }
-            };
-        return res.json(jsonData); 
+
+          returnJson.result = true,
+          returnJson.message = "정상적으로 로그인 됐습니다.";
+          returnJson.data = {
+            authrization : true
+            , tokken     : tokken
+            , userInfo 
+        };
+
+        return res.json(returnJson); 
     }catch(err){
       return res.status(500).json(err)
     }   
@@ -47,37 +54,51 @@ router.post('/login', (req, res) => {
 router.post("/check", (req, res) => {
      const {tokken} = req.body;
      const decoded = isTokken(tokken);
-     if(!decoded) return res.status(500).json({authrization : false});
+     const returnJson = {
+          result : null, 
+          message : "",
+          data : null
+        , 
+    }
 
-      /* Query List */
-      const check = "SELECT ID, NAME, PASSWORD FROM USER WHERE ID=? AND PASSWORD = ?";
+     if(!decoded) {
+        returnJson.result = false;
+        returnJson.message=" 유효하지 않은 토큰 입니다. ";
+        returnJson.data={
+            authrization : false
+        }
+        return res.status(500).json(returnJson);
       
+      }      
       db( async (connection)=>{
         try{
           // 토근에 있는 UserInfo 
-          const {ID, PASSWORD} = decoded.userInfo;   
-
-
-          const rows = await query(connection, check, [ID, PASSWORD]).catch(err=>{throw err});
+          const {admin_id, password} = decoded.userInfo;   
+            
+          const rows = await query(connection, SELECT_ADMIN, [admin_id, password]).catch(err=>{throw err});
       
             if(rows[0] === undefined){
                   res.status(500)//
-                  return res.json({
-                    error : "사용자가 없습니다.",
+                returnJson.message="사용자가 없습니다.";
+                returnJson.result = false;
+                returnJson.data= {
                   authrization : false
-                })
+                }
+                  return res.json(returnJson);
             }
-                const userInfo  = rows[0]||{}; 
+                const userInfo  = rows[0]; 
                 const tokken    =  getTokken(userInfo);
-                const jsonData  = {
-                      authrization : true
-                      , tokken     : tokken
-                      , userInfo : {
-                          userid : userInfo.ID
-                          , name : userInfo.NAME
-                      }
-                  };
-              return res.json(jsonData); 
+               
+                returnJson.result = true;
+                returnJson.message="새로고침 되었습니다.";
+                returnJson.data = {
+                  authrization : true
+                  , tokken     : tokken
+                  , userInfo 
+              }
+
+
+              return res.json(returnJson); 
           }catch(err){
             console.log(err);
             return res.status(500).json({authrization : false})

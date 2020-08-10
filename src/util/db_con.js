@@ -3,11 +3,11 @@ const logger  = require('./logger');
 
 
 const pool = mysql.createPool({
-  host            :  "db.dawplus.gabia.io",
-  user            :  "dawplus",
+  host            :  "db.foresthealing113.gabia.io",
+  user            :  "foresthealing113",
   port            :  "3306",
-  password        :  "5927ab12!@",
-  database        :  "dbdawplus",
+  password        :  "forest113*",
+  database        :  "dbforesthealing113",
   connectionLimit :  "10"
 });
 logger.info('Connection pool created.');
