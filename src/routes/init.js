@@ -29,10 +29,10 @@ router.post('/', (req, res) => {
 
 // API  신규등록
 router.post('/new', (req, res) => {
-    const {name, url, description} = req.body;
+    const {name, url, description, method} = req.body;
     db( async (connection)=>{
       try{
-          const rows = await query(connection, NEW,[name, url, description]).catch(err=>{throw err});
+          const rows = await query(connection, NEW,[name, url, description, method]).catch(err=>{throw err});
           return res.json({
                     message :"정상 등록되었습니다.",
                     info : rows
@@ -48,8 +48,12 @@ router.post('/new', (req, res) => {
   
   
 // API 삭제
-router.delete('/', (req, res) => {
-    const {id} = req.body;
+router.delete('/:id', (req, res) => {
+    
+    //const {id} = req.body;
+
+    const {id} = req.params;
+    console.log(id, "<=====");
     db( async (connection)=>{
       try{
           const rows = await query(connection, DELETE,[id]).catch(err=>{throw err});

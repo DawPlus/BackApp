@@ -3,6 +3,7 @@ SELECT API_ID
      , NAME
      , URL
      , DESCRIPTION
+     , method
   FROM API
 `;
 
@@ -11,10 +12,13 @@ INSERT INTO API(
       NAME
     , URL
     , DESCRIPTION
+    , method
 )VALUES(
         ?
     ,   ?
     ,   ?
+    ,   ?
+
 )
 `;
 
