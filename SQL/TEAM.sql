@@ -1,0 +1,12 @@
+CREATE TABLE dbforesthealing113.TEAM (
+	id BIGINT auto_increment NOT NULL,
+	team varchar(10) NOT NULL,
+	manager varchar(10) NULL,
+	phone varchar(100) NULL,
+	update_date DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL,
+	save_date DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    CONSTRAINT TEAM_PK PRIMARY KEY (id)
+)
+ENGINE=InnoDB
+DEFAULT CHARSET=utf8
+COLLATE=utf8_general_ci;
