@@ -2,8 +2,8 @@
   "canvas": {
     "width": 2000,
     "height": 2000,
-    "scrollTop": 63,
-    "scrollLeft": 4,
+    "scrollTop": 0,
+    "scrollLeft": 650,
     "show": {
       "tableComment": true,
       "columnComment": true,
@@ -402,6 +402,67 @@
           "widthComment": 60
         },
         "id": "c56867e6-a407-712b-0d82-2d3afc5fe8c0"
+      },
+      {
+        "name": "FILE",
+        "comment": "",
+        "columns": [
+          {
+            "name": "id",
+            "comment": "파일 PK",
+            "dataType": "BIGINT",
+            "default": "",
+            "option": {
+              "autoIncrement": true,
+              "primaryKey": false,
+              "unique": true,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "36cd4845-7b79-63df-349d-f7d442b509c4"
+          },
+          {
+            "name": "finle_name",
+            "comment": "",
+            "dataType": "",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 65,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "7e41cddd-cf40-258a-22b6-66c397d724a6"
+          }
+        ],
+        "ui": {
+          "active": false,
+          "left": 795,
+          "top": 100,
+          "zIndex": 275,
+          "widthName": 60,
+          "widthComment": 60
+        },
+        "id": "8d5369e8-384b-5851-a7b4-30ce8b1a0d4c"
       }
     ],
     "indexes": []

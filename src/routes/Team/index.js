@@ -1,16 +1,38 @@
 // index.js
 const express   = require('express');
 const router = express.Router();
-const listRouter = require("./List");
-const newRouter = require("./New");
-const selectRouter = require("./Select");
-const updateRouter = require("./Update");
-const deleteRouter = require("./Delete");
 
-// API 목록 조회 조회 
-router.post('/', listRouter);
-router.post('/new', newRouter);
-router.post('/:id', selectRouter);
-router.put("/", updateRouter);
-router.delete("/:id", deleteRouter);
+const {newAction, selectAction,  listAction, deleteAction, updateAction} = require("../../Action/");
+const {LIST, NEW, SELECT, UPDATE, DELETE}  = require("../../query/Team");
+
+// 팀 목록 조회 조회 
+router.post('/',(req, res)=> listAction(res,LIST));
+
+
+// 팀 신규등록
+router.post('/new', (req, res)=>{  
+    const {team, manager, phone} = req.body;
+    newAction(res, NEW, [team, manager, phone]) ;
+});
+
+
+// 팀 상세조회
+router.post('/:id', (req, res)=>{  
+    const {id} =  req.params;
+     selectAction(res, SELECT, [id]);
+});
+
+
+// 팀 삭제 
+router.delete("/:id", (req, res)=>{  
+    const {id} =  req.params
+    deleteAction(res, DELETE, [id]);
+});
+
+// 팀 수정
+router.put('/', (req, res)=>{  
+    const {team, manager, phone, id} = req.body;
+    updateAction(res, UPDATE, [team, manager, phone, id]) ;
+});
+
 module.exports = router;
