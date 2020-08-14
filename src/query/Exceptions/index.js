@@ -3,7 +3,7 @@ const LIST = `
         , title
         , exceptions
         , device_id
-        , save_date
+        , DATE_FORMAT(save_date, "%Y-%c-%e %T") as save_date
     FROM EXCEPTIONS
 `;
 
@@ -12,7 +12,7 @@ const SELECT = `
          , title
          , exceptions
          , device_id
-         , save_date
+         , DATE_FORMAT(save_date, "%Y %c/%e %T") as save_date
       FROM EXCEPTIONS
      WHERE exception_id = ? 
 `;

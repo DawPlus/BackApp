@@ -6,6 +6,8 @@ var base64 = require('base-64');
 
 module.exports={
     loginAction : (res, qr, {id, password})=>{
+
+        console.log(id, password)
         db( async (connection)=>{
             try{
                     const rows = await query(connection, qr, [id, base64.encode(password)]).catch(err=>{ throw err});
@@ -20,20 +22,19 @@ module.exports={
                     
                     const userInfo  = rows[0]; 
                     const tokken    =  getTokken(userInfo);
-                    // TODO 리턴 데이터 오류 ?? 
-                     console.log("정상 조회 ", tokken);
-                     console.log({
+                    
+                    return res.json({
                         result : true,
                         message : "정상적으로 로그인 됐습니다. ",
                         data : {
                             authrization : true,
                             tokken : tokken,
-                            userinfo
+                            userInfo
                         }
-                    })
-                    return res.json();
+                    });
                     
             }catch(err){
+              console.log(err);
               return res.status(500).json(err)
             }   
           });

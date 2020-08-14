@@ -1,6 +1,6 @@
 const query = require('../../../util/query');
 const db = require('../../../util/db_con');
-const {isTokken} = require("../../../util/tokken");
+const {getTokken,isTokken} = require("../../../util/tokken");
 module.exports={
     checkTokkenAction : (res, qr, tokken)=>{
         const decoded = isTokken(tokken);
@@ -41,7 +41,8 @@ module.exports={
                                 userInfo
                             }
                         }); 
-                    }catch(err){                     
+                    }catch(err){                    
+                        console.log(err) 
                         return res.status(500).json({authrization : false})
                     }   
             });
