@@ -22,6 +22,16 @@ INSERT INTO API(
 )
 `;
 
+const SELECT= `
+SELECT API_ID
+     , NAME
+     , URL
+     , DESCRIPTION
+     , method
+  FROM API
+ WHERE API_ID=?
+`;
+
 const DELETE = `
 DELETE 
   FROM API
@@ -31,6 +41,7 @@ DELETE
 module.exports={
     LIST ,
     NEW,
-    DELETE
+    DELETE,
+    SELECT
     
 }

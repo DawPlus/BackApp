@@ -6,7 +6,7 @@ const question      =   require("./question");
 const file          =   require("./file");
 const init          =   require("./Init");
 const exceptions    =   require("./Exceptions");
-const map           =   require("./map");
+const map           =   require("./Map");
 const team          =   require("./Team");
 
 
@@ -18,8 +18,11 @@ router.use('/auth', auth);
 
 router.use('/question', question);
 router.use('/file', file);
-router.use('/map', map);
 
+
+
+// 지도관리
+router.use('/map', map);
 
 // API 관리
 router.use('/init', init);

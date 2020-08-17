@@ -34,7 +34,7 @@ const deleteAction = (res, qr ,params) => {
           const rows = await query(connection, qr, params).catch(err=>{throw err});
           
           if(rows[0] === undefined){
-              return res.json({
+              return res.status(500).json({
                   result : false ,
                   message : "조회중 오류가 발생 했습니다."
               })
@@ -60,7 +60,8 @@ const deleteAction = (res, qr ,params) => {
           if(rows.length === 0 || rows[0] === undefined){
                return res.json({
                 result : true ,
-                message : "조회결과가 없습니다. "
+                message : "조회결과가 없습니다. ",
+                data : []
             });
            }
 

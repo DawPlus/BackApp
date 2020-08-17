@@ -5,13 +5,12 @@ const LIST = `
         , destination
         , file_name
         , path
-        , size
-        , team_id
+        , size      
         , url
         , save_date
         , 1 as width
         , 1 as height
-    FROM FILE
+    FROM ADMIN_FILE
 `;
 
 const SELECT= `
@@ -22,65 +21,45 @@ const SELECT= `
         , file_name
         , path
         , size
-        , team_id
         , url
         , save_date
-    FROM FILE
+    FROM ADMIN_FILE
     WHERE file_id = ?
 `;
 
 
 const NEW = `
-    INSERT INTO FILE(
-        original_name
-    , mimetype
-    , destination
-    , file_name
-    , path
-    , size
-    , team_id  
-    , url
-    , type
+    INSERT INTO ADMIN_FILE(
+           original_name
+         , mimetype
+         , destination
+         , file_name
+         , path
+         , size
+         , url
+         , type
     )VALUES(
-        ?
-    ,?
-    ,?
-    ,?
-    ,?
-    ,?
-    ,?
-    ,?
-    ,?
+           ?
+         , ?
+         , ?
+         , ?
+         , ?
+         , ?
+         , ?
+         , 1
     )
 
 `;
-
-
-const SUB = `
-    INSERT INTO FILE_SUB(
-        file_id
-    , url
-    )VALUES(
-        ?
-    ,?
-    )
-
-`
 
 const DELETE = `
-DELETE FROM FILE
+DELETE FROM ADMIN_FILE
         WHERE FILE_ID = ?
 `;
-const DELETE_SUB = `
-DELETE FROM FILE_SUB
-    WHERE FILE_ID = ?
-`
+
 module.exports={
     LIST,
     NEW,
-    SUB,
     DELETE,
-    DELETE_SUB,
     SELECT
     
 }

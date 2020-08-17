@@ -39,7 +39,9 @@ router.get('/', (req, res) => {
 
 });
 
-router.post('/upload', upload.single('file'), function(req, res){
+
+
+router.post('/upload', upload.single('file'), (req, res) => {
   
   // Team ID  
   const {team_id}= req.body;

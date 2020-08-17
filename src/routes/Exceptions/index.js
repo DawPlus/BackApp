@@ -20,7 +20,7 @@ router.post('/new', (req, res)=>{
 
 
 // Exception 상세조회
-router.post('/:id', (req, res)=>{  
+router.get('/:id', (req, res)=>{  
     const {id} =  req.params;
      selectAction(res, SELECT, [id]);
 });
