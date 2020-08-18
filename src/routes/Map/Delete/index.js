@@ -1,26 +1,24 @@
 const db    = require('../../../util/db_con');
 const query = require('../../../util/query');
+
 const urlPrefix = "/static/map/";
+var fs = require('fs');
+
 
 module.exports={
-    uploadAction : (req, res, qr) => {
+    deleteAction : (req, res, qr) => {
     
         // File Info 
-        const {originalname, mimetype, destination, filename, path, size} = req.file;
-        // File URL 
-        const url = urlPrefix+filename;
-    
-        console.log(qr);
-        console.log(originalname)
+        const {file_id, path} = req.body;
         
+        console.log(qr);
         db( async (connection)=>{
             try{
                 const row =  await query(connection
                 , qr
-                ,[originalname, mimetype, destination, filename, path, size, url]
+                ,[file_id]
                 ).catch(err=>{throw err});
         
-
                 if(row === undefined){
                     return res.json({
                         result : false ,
@@ -28,15 +26,17 @@ module.exports={
                     })
                 }
 
-                
+                fs.unlink(path,(err)=>{
+                    console.log(err);
+                });
+
                 return res.json({
-                    message : "정상등록 되었습니다.",
+                    message : "삭제 되었습니다.",
                     result : true,
-                    data : url 
-                })
+                });
         
                 }catch(err){
-                
+                    console.log(err);
                     return res.status(500).json(err)
                 }   
             });

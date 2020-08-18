@@ -8,8 +8,6 @@ const LIST = `
         , size      
         , url
         , save_date
-        , 1 as width
-        , 1 as height
     FROM ADMIN_FILE
 `;
 

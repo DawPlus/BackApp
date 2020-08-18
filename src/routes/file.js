@@ -32,9 +32,9 @@ router.get('/', (req, res) => {
   
   var files = fs.readdirSync("uploads/"); // 디렉토리를 읽어온다
 
-  // fs.unlink(`${"uploads/"}/1595298693540.jpg`,(err)=>{
-  //   console.log(err)
-  // })
+  fs.unlink(`${"uploads/"}/1595298693540.jpg`,(err)=>{
+    console.log(err)
+  })
   return res.send({success : "true"})
 
 });
