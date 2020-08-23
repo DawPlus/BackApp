@@ -13,7 +13,9 @@ router.post('/',(req, res)=> {
         console.log(files);
      
         return res.json({
-                files
+                message : "정상 조회 되었습니다.",
+                result : true,
+                data : files
                 
             
             })
