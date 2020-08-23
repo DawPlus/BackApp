@@ -9,6 +9,7 @@ const LIST = `
         , url
         , save_date
     FROM ADMIN_FILE
+   WHERE type = '1'
 `;
 
 const SELECT= `
@@ -23,6 +24,7 @@ const SELECT= `
         , save_date
     FROM ADMIN_FILE
     WHERE file_id = ?
+
 `;
 
 

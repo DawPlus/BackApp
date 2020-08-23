@@ -8,8 +8,8 @@ const init          =   require("./Init");
 const exceptions    =   require("./Exceptions");
 const map           =   require("./Map");
 const team          =   require("./Team");
-
-
+const guide         =   require("./Guide");
+const video         =   require("./Video");
 
 // 인증(로그인 / 로그아웃 , 토큰 발행)
 router.use('/auth', auth);
@@ -20,9 +20,13 @@ router.use('/question', question);
 router.use('/file', file);
 
 
+router.use("/video", video);
 
 // 지도관리
 router.use('/map', map);
+
+// 가이드관리
+router.use('/guide', guide);
 
 // API 관리
 router.use('/init', init);

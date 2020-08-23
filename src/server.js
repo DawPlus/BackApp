@@ -24,8 +24,9 @@ app.use((req, res, next) => {
 
       
 app.use('/api', route);
+app.use('/static/video', express.static(__dirname + '/uploads/video'));
 app.use('/static/map', express.static(__dirname + '/uploads/map'));
-
+app.use('/static/guide', express.static(__dirname + '/uploads/guide'));
 
 
 app.use('/', express.static(path.resolve(__dirname, '../build')));
