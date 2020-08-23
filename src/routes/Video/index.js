@@ -1,7 +1,8 @@
 // index.js
 const express   = require('express');
 const router = express.Router();
-const dir = "src/uploads/video";
+const dir = require("../../config").uploadFolder.video;
+
 var fs = require('fs');
 // 팀 목록 조회 조회 
 router.post('/',(req, res)=> {
