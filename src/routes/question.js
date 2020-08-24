@@ -37,7 +37,7 @@ router.put('/', (req, res) => {
 
 // 목록 조회 조회 
 router.post('/list', (req, res) => {
-  console.log("hello?????????");
+  
   db( async (connection)=>{
   try{
       const rows = await query(connection, LIST).catch(err=>{throw err});
