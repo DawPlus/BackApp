@@ -10,6 +10,7 @@ const map           =   require("./Map");
 const team          =   require("./Team");
 const guide         =   require("./Guide");
 const video         =   require("./Video");
+const screenshot    =   require("./Screenshot");
 
 // 인증(로그인 / 로그아웃 , 토큰 발행)
 router.use('/auth', auth);
@@ -37,5 +38,7 @@ router.use('/exceptions', exceptions);
 // 팀관리 
 router.use('/team', team);
 
+// 스크린샷
+router.use("/screenshot", screenshot);
 
 module.exports = router;
