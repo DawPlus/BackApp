@@ -16,7 +16,7 @@ router.put('/', (req, res) => {
   db( async (connection)=>{
   try{
       const rows = await query(connection, add,[title, content, update_user]).catch(err=>{throw err});
-      console.log(rows);
+   
       if(rows[0] === undefined){
             return res.json({})
       }
@@ -45,7 +45,7 @@ router.post('/list', (req, res) => {
       if(rows[0] === undefined){
             return res.json({})
       }
-      console.log(rows);
+     
         return res.json({
             list : rows
         }); 

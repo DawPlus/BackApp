@@ -45,6 +45,6 @@ module.exports={
     LIST,
     NEW,
     DELETE,
-    SELECT
+    
     
 }

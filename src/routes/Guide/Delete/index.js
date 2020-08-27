@@ -11,7 +11,7 @@ module.exports={
         // File Info 
         const {file_id, path} = req.body;
         
-        console.log(qr);
+      
         db( async (connection)=>{
             try{
                 const row =  await query(connection

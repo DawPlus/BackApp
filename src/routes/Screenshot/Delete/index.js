@@ -1,17 +1,15 @@
 const db    = require('../../../util/db_con');
 const query = require('../../../util/query');
-
-const urlPrefix = "/static/map/";
 var fs = require('fs');
 
 
 module.exports={
     deleteAction : (req, res, qr) => {
-    //TODO
+
         // File Info 
         const {file_id, path} = req.body;
         
-        console.log(qr);
+
         db( async (connection)=>{
             try{
                 const row =  await query(connection

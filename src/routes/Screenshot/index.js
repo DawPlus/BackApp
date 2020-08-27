@@ -2,9 +2,9 @@
 const express   = require('express');
 const router = express.Router();
 const path = require('path');
-const {selectAction,  deleteAction} = require("../../Action/");
 const {listAction} = require("./List");
 const {uploadAction} = require("./Upload");
+const {deleteAction} = require("./Delete")
 
 
 
@@ -37,10 +37,9 @@ router.post('/',(req, res)=> {
 //  스크린샷 신규 등록
 router.post('/new', upload.single('file'), (req, res)=>uploadAction(req, res, NEW));
 
-
-// Screenshot 삭제 
-router.delete("/:id", (req, res)=>{  
-    const {id} =  req.params
-    deleteAction(res, DELETE, [id]);
+// 스크린샷 삭제 
+router.post("/delete", (req, res)=>{  
+  deleteAction(req, res, DELETE);
 });
+
 module.exports = router;

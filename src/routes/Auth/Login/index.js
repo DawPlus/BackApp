@@ -7,7 +7,7 @@ var base64 = require('base-64');
 module.exports={
     loginAction : (res, qr, {id, password})=>{
 
-        console.log(id, password)
+        
         db( async (connection)=>{
             try{
                     const rows = await query(connection, qr, [id, base64.encode(password)]).catch(err=>{ throw err});
@@ -34,7 +34,7 @@ module.exports={
                     });
                     
             }catch(err){
-              console.log(err);
+          
               return res.status(500).json(err)
             }   
           });
