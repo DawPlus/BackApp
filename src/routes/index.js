@@ -2,7 +2,6 @@
 const express   = require('express');
 const router = express.Router();
 const auth          =   require("./Auth");
-const question      =   require("./question");
 const file          =   require("./file");
 const init          =   require("./Init");
 const exceptions    =   require("./Exceptions");
@@ -11,13 +10,12 @@ const team          =   require("./Team");
 const guide         =   require("./Guide");
 const video         =   require("./Video");
 const screenshot    =   require("./Screenshot");
+const question    =   require("./Question");
 
 // 인증(로그인 / 로그아웃 , 토큰 발행)
 router.use('/auth', auth);
 
 
-
-router.use('/question', question);
 router.use('/file', file);
 
 
@@ -40,5 +38,8 @@ router.use('/team', team);
 
 // 스크린샷
 router.use("/screenshot", screenshot);
+
+// 문제 관리 
+router.use("/question", question);
 
 module.exports = router;
