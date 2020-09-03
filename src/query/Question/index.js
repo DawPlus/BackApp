@@ -31,7 +31,7 @@ const NEW = `
          , map
          , guide
          , video
-         , updae_date
+         , update_date
     )VALUES(
            ?
          , ?
@@ -44,6 +44,18 @@ const NEW = `
 
 `;
 
+
+
+const SUB = `
+    INSERT INTO EXAMPLE(
+           question_id
+         , content
+         , isAnswer
+         , update_date
+    )VALUES ?
+
+`;
+
 const DELETE = `
 DELETE FROM ADMIN_FILE
         WHERE FILE_ID = ?
@@ -52,6 +64,7 @@ DELETE FROM ADMIN_FILE
 module.exports={
     LIST,
     NEW,
+    SUB,
     DELETE,
     SELECT
     
