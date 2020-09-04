@@ -1,24 +1,38 @@
 const LIST = `
+SELECT question_id
+     , title
+     , content
+     , type
+     , map
+     , guide
+     , video
+     , DATE_FORMAT(update_date, "%Y-%m-%d %T") as update_date
+  FROM QUESTION
+`;
+
+const EXAMPLE_LIST = `
+    SELECT T2.example_id 
+        , T2.question_id 
+        , T2.content 
+        , T2.isAnswer 
+        , T2.update_date 
+    FROM QUESTION AS T1
+    INNER JOIN EXAMPLE  AS T2
+    ON T2.question_id  = T1.question_id 
+`;
+
+
+
+const SELECT= `
     SELECT question_id
         , title
         , content
         , type
-        , update_date
+        , map
+        , guide
+        , video
+        , DATE_FORMAT(update_date, "%Y-%m-%d %T") as update_date
     FROM QUESTION
- 
-`;
-
-const SELECT= `
-    SELECT file_id
-        , original_name
-        , mimetype
-        , destination
-        , file_name
-        , path
-        , size
-        , url
-        , save_date
-    FROM ADMIN_FILE
     WHERE file_id = ?
 `;
 
@@ -51,9 +65,8 @@ const SUB = `
            question_id
          , content
          , isAnswer
-         , update_date
     )VALUES ?
-
+;
 `;
 
 const DELETE = `

@@ -1,12 +1,11 @@
 
 const query = require('../../../util/query');
 const db = require('../../../util/db_con');
-const {NEW, SUB} = require("../../../query/Question/");
+const {LIST} = require("../../../query/Question/");
 
 
 // 신규등록 
-  const newAction = (req, res) => {
-    const {title, type, content, map , guide, video, examples, singleExample}  = req.body;
+  const listAction = (req, res) => {
     const nType = type == 1  ? true :false ;  // 1 객관식 , 2 주관식 
 
     
@@ -58,7 +57,7 @@ const {NEW, SUB} = require("../../../query/Question/");
 
   module.exports={
      
-      newAction,
+      listAction,
      
 
   }

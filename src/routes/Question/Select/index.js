@@ -1,7 +1,7 @@
 
 const query = require('../../../util/query');
 const db = require('../../../util/db_con');
-const {NEW, SUB} = require("../../../query/Question/");
+const {SELECT, SUBSELECT} = require("../../../query/Question/");
 
 
 // 신규등록 

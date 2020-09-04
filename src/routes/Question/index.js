@@ -2,6 +2,7 @@
 const express   = require('express');
 const router = express.Router();
 const {selectAction,  listAction, deleteAction} = require("../../Action/");
+//const {listAction} = require("./List");
 const { newAction} = require("./New")
 // 기본  CRUD  Template 사용 필요시 신규로 생성 
 const {LIST, SELECT, DELETE} = require("../../query/Question/");
@@ -14,8 +15,6 @@ router.post('/',(req, res)=> listAction(res,LIST));
 
 // 문제 신규 등록
 router.post('/new', (req, res)=>{  
-   
-   
     newAction(req, res) ;
 });
 
