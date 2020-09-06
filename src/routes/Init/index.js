@@ -15,7 +15,8 @@ router.post('/new', (req, res)=>{
     newAction(res, NEW, [name, url, description, method]) ;
 });
 
-router.get("/:id", (req, res)=>{  
+// 팀 상세 조회 
+router.post("/:id", (req, res)=>{  
     const {id} =  req.params
     selectAction(res, SELECT, [id]) ;
 });

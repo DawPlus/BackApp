@@ -6,13 +6,12 @@ const {NEW, SUB} = require("../../../query/Question/");
 
 // 신규등록 
   const newAction = (req, res) => {
-    const {title, type, content, map , guide, video, examples, singleExample}  = req.body;
+    const {title, type, content, map , guide, video, hint,examples, singleExample}  = req.body;
     const nType = type == 1  ? true :false ;  // 1 객관식 , 2 주관식 
 
-    
     db( async (connection)=>{
       try{
-          const rows = await query(connection, NEW, [title, content, type, map , guide, video]).catch(err=> {throw err;});
+          const rows = await query(connection, NEW, [title, content, type, map , guide, video, hint]).catch(err=> {throw err;});
          
           if(rows === undefined){
               return res.json({

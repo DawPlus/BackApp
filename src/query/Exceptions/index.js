@@ -1,20 +1,21 @@
 const LIST = `
-    SELECT exception_id
+    SELECT exceptionId
         , title
         , exceptions
-        , device_id
-        , DATE_FORMAT(save_date, "%Y-%c-%e %T") as save_date
+        , deviceId
+        , DATE_FORMAT(saveDate, "%Y-%m-%d %T")   AS saveDate
     FROM EXCEPTIONS
+    ORDER BY saveDate DESC
 `;
 
 const SELECT = `
-    SELECT exception_id
+    SELECT exceptionId
          , title
          , exceptions
-         , device_id
-         , DATE_FORMAT(save_date, "%Y %c/%e %T") as save_date
+         , deviceId
+         , DATE_FORMAT(saveDate, "%Y-%m-%d %T")   AS saveDate
       FROM EXCEPTIONS
-     WHERE exception_id = ? 
+     WHERE exceptionId = ? 
 `;
 
 
@@ -22,7 +23,7 @@ const NEW = `
     INSERT INTO EXCEPTIONS(
            title
          , exceptions
-         , device_id
+         , deviceid
     )VALUES(
             ?
           , ?
@@ -33,8 +34,9 @@ const NEW = `
 const DELETE = `
     DELETE 
       FROM EXCEPTIONS
-     WHERE exception_id = ?
 `;
+
+
 
 module.exports={
     LIST ,

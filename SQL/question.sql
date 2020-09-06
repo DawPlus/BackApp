@@ -7,6 +7,7 @@ CREATE TABLE dbforesthealing113.QUESTION (
 	guide varchar(1000) NULL,
 	video varchar(1000) NULL,
 	update_date DATETIME NULL,
+	useYn varchar(1) NULL default 'Y',
 	CONSTRAINT QUESTION_PK PRIMARY KEY (question_id)
 )
 ENGINE=InnoDB

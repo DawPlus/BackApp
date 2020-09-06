@@ -81,6 +81,7 @@ const deleteAction = (res, qr ,params) => {
 
 // 신규등록 
   const newAction = (res, qr, params) => {
+
     db( async (connection)=>{
       try{
           const rows = await query(connection, qr, params)
@@ -94,8 +95,9 @@ const deleteAction = (res, qr ,params) => {
               return res.json({
                   result : true, 
                   message : "정상등록되었습니다. ",
-                  data : rows,
-                  id : rows.insertId
+                  data : {
+                        id: rows.insertId
+                    }
               }); 
           }catch(err){
               return res.status(500).json(err)

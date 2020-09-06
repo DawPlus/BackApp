@@ -1,8 +1,9 @@
 CREATE TABLE dbforesthealing113.API (
-	API_ID BIGINT auto_increment NOT NULL,
-	NAME varchar(100) NULL,
-	URL varchar(500) NULL,
-	DESCRIPTION varchar(1000) NULL,
+	apiId BIGINT auto_increment NOT NULL,
+	name varchar(100) NULL,
+	url varchar(500) NULL,
+	description varchar(1000) NULL,
+	method varchar(10) NULL,
 	CONSTRAINT API_PK PRIMARY KEY (API_ID)
 )
 ENGINE=InnoDB

@@ -1,10 +1,10 @@
-CREATE TABLE dbdawplus.EXCEPTIONS (
-	exception_id BIGINT auto_increment NOT NULL,
+CREATE TABLE dbforesthealing113.EXCEPTIONS (
+	exceptionId BIGINT auto_increment NOT NULL,
 	title varchar(500) NOT NULL,
 	exceptions LONGTEXT NULL,
-	device_id varchar(100) NULL,
-	save_date DATETIME DEFAULT CURRENT_TIMESTAMP NULL,
-	CONSTRAINT Exception_PK PRIMARY KEY (exception_id)
+	deviceId varchar(100) NULL,
+	saveDate DATETIME DEFAULT CURRENT_TIMESTAMP NULL,
+	CONSTRAINT Exception_PK PRIMARY KEY (exceptionId)
 )
 ENGINE=InnoDB
 DEFAULT CHARSET=utf8

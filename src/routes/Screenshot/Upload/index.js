@@ -33,7 +33,7 @@ module.exports={
                 return res.json({
                     message : "정상등록 되었습니다.",
                     result : true,
-                    data : url 
+                    data : {url} 
                 })
         
                 }catch(err){

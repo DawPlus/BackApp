@@ -9,26 +9,34 @@ const {LIST, SELECT, NEW, DELETE} = require("../../query/Exceptions/");
 
 
 // Exception 목록 조회 조회 
-router.post('/',(req, res)=> listAction(res,LIST));
+router.post('/',(req, res)=> {listAction(res,LIST);  });
 
 
 // Exception 신규 등록
 router.post('/new', (req, res)=>{  
-    const {title, exceptions, device_id} = req.body;
-    newAction(res, NEW, [title, exceptions, device_id]) ;
+    const {title, exceptions, deviceId} = req.body;
+    newAction(res, NEW, [title, exceptions, deviceId]) ;
 });
 
 
 // Exception 상세조회
-router.get('/:id', (req, res)=>{  
+router.post('/:id', (req, res)=>{  
     const {id} =  req.params;
      selectAction(res, SELECT, [id]);
 });
 
 
 // Exception 삭제 
-router.delete("/:id", (req, res)=>{  
-    const {id} =  req.params
-    deleteAction(res, DELETE, [id]);
+router.delete("/", (req, res)=>{  
+    deleteAction(res, DELETE, ["TEST"]);
 });
+
+
+
+// Exception 삭제 
+router.delete("/deleteAll", (req, res)=>{  
+    deleteAction(res, DELETE, ["TEST"]);
+});
+
+
 module.exports = router;

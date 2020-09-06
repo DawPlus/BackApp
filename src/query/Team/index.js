@@ -1,22 +1,22 @@
 const LIST = `
-    SELECT id
+    SELECT teamId
         , team
         , manager
         , phone
-        , update_date
-        , save_date
+        , DATE_FORMAT(updateDate, "%Y-%m-%d") AS updateDate
+        , DATE_FORMAT(saveDate, "%Y-%m-%d")   AS saveDate
     FROM TEAM
 `;
 
 const SELECT = `
-    SELECT id
+    SELECT teamId
         , team
         , manager
         , phone
-        , update_date
-        , save_date
+        , DATE_FORMAT(updateDate, "%Y-%m-%d") AS updateDate
+        , DATE_FORMAT(saveDate, "%Y-%m-%d")   AS saveDate
     FROM TEAM
-    WHERE id= ?
+    WHERE teamId= ?
 `
 const NEW = `
     INSERT INTO TEAM(
@@ -33,7 +33,7 @@ const NEW = `
 const DELETE = `
     DELETE 
     FROM TEAM
-    WHERE id = ?
+    WHERE teamId = ?
 `;
 
 const UPDATE = `
@@ -41,8 +41,8 @@ const UPDATE = `
        SET team     = ?
          , manager  = ?
          , phone    = ?   
-         , update_date = now()
-     WHERE id       = ?
+         , updateDate = now()
+     WHERE teamId       = ?
 
 `;
 

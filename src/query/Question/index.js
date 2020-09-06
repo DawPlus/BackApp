@@ -7,7 +7,11 @@ SELECT question_id
      , guide
      , video
      , DATE_FORMAT(update_date, "%Y-%m-%d %T") as update_date
+     , useYN
+     , hint
   FROM QUESTION
+  WHERE useYN = 'Y'
+  
 `;
 
 const EXAMPLE_LIST = `
@@ -15,10 +19,10 @@ const EXAMPLE_LIST = `
         , T2.question_id 
         , T2.content 
         , T2.isAnswer 
-        , T2.update_date 
+        , DATE_FORMAT(T2.update_date, "%Y-%m-%d %T") as update_date
     FROM QUESTION AS T1
     INNER JOIN EXAMPLE  AS T2
-    ON T2.question_id  = T1.question_id 
+    ON T2.question_id  = T1.question_id   
 `;
 
 
@@ -32,8 +36,24 @@ const SELECT= `
         , guide
         , video
         , DATE_FORMAT(update_date, "%Y-%m-%d %T") as update_date
+        , hint
     FROM QUESTION
-    WHERE file_id = ?
+    WHERE question_id= ?
+`;
+
+
+
+
+const EXAMPLE_SELECT= `
+SELECT T2.example_id 
+     , T2.question_id 
+     , T2.content 
+     , T2.isAnswer 
+     , DATE_FORMAT(T2.update_date, "%Y-%m-%d %T") AS update_date
+  FROM QUESTION      AS T1
+ INNER JOIN EXAMPLE  AS T2
+    ON T2.question_id  = T1.question_id   
+ WHERE T1.question_id  = ?
 `;
 
 
@@ -46,6 +66,7 @@ const NEW = `
          , guide
          , video
          , update_date
+         , hint
     )VALUES(
            ?
          , ?
@@ -54,6 +75,7 @@ const NEW = `
          , ?
          , ?
          , sysdate()
+         , ?
     )
 
 `;
@@ -70,8 +92,9 @@ const SUB = `
 `;
 
 const DELETE = `
-DELETE FROM ADMIN_FILE
-        WHERE FILE_ID = ?
+DELETE 
+  FROM EXMAMPLE 
+ WHERE question_id  =  ?
 `;
 
 module.exports={
@@ -79,6 +102,9 @@ module.exports={
     NEW,
     SUB,
     DELETE,
-    SELECT
+    SELECT,
+    EXAMPLE_LIST,
+    EXAMPLE_SELECT
+    
     
 }

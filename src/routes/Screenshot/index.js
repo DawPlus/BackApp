@@ -38,7 +38,7 @@ router.post('/',(req, res)=> {
 router.post('/new', upload.single('file'), (req, res)=>uploadAction(req, res, NEW));
 
 // 스크린샷 삭제 
-router.post("/delete", (req, res)=>{  
+router.delete("/delete", (req, res)=>{  
   deleteAction(req, res, DELETE);
 });
 

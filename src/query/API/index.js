@@ -1,17 +1,17 @@
 const LIST = `
-SELECT API_ID
-     , NAME
-     , URL
-     , DESCRIPTION
+SELECT apiId
+     , name
+     , url
+     , description
      , method
   FROM API
 `;
 
 const NEW = `
 INSERT INTO API(
-      NAME
-    , URL
-    , DESCRIPTION
+      name
+    , url
+    , description
     , method
 )VALUES(
         ?
@@ -23,19 +23,19 @@ INSERT INTO API(
 `;
 
 const SELECT= `
-SELECT API_ID
-     , NAME
-     , URL
-     , DESCRIPTION
+SELECT apiId
+     , name
+     , url
+     , description
      , method
   FROM API
- WHERE API_ID=?
+ WHERE apiId=?
 `;
 
 const DELETE = `
 DELETE 
   FROM API
- WHERE API_ID = ?
+ WHERE apiId = ?
 `;
 
 module.exports={
