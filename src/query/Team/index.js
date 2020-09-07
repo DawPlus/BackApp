@@ -6,7 +6,7 @@ const LIST = `
         , DATE_FORMAT(updateDate, "%Y-%m-%d") AS updateDate
         , DATE_FORMAT(saveDate, "%Y-%m-%d")   AS saveDate
     FROM TEAM
-   ORDER BY saveDate DESC
+   ORDER BY teamId DESC
 `;
 
 const SELECT = `
