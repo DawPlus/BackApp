@@ -1,64 +1,55 @@
 
 const query = require('../../../util/query');
 const db = require('../../../util/db_con');
-const {SELECT, SUBSELECT} = require("../../../query/Question/");
+const {SELECT, EXAMPLE_SELECT} = require("../../../query/Question/");
 
 
-// 신규등록 
-  const newAction = (req, res) => {
-    const {title, type, content, map , guide, video, examples, singleExample}  = req.body;
-    const nType = type == 1  ? true :false ;  // 1 객관식 , 2 주관식 
 
-    
+  // 상세조회
+  const selectAction = (req, res) => {
+    const {id} =  req.params;
     db( async (connection)=>{
       try{
-          const rows = await query(connection, NEW, [title, content, type, map , guide, video]).catch(err=> {throw err;});
-         
-          if(rows === undefined){
-              return res.json({
+          const rows = await query(connection, SELECT, [id]).catch(err=>{throw err});
+          
+          if(rows[0] === undefined){
+              return res.status(500).json({
                   result : false ,
-                  message : "오류가 발생했습니다."
+                  message : "조회중 오류가 발생 했습니다."
               })
           }
-                //SUB INSERT 
-                db( async (connection)=>{
-                    try{
-                            const insertExam =  [];
+          const questions = rows[0];
+            //SUB INSERT 
+            db( async (connection)=>{
+                try{
+                    const examples = await query(connection, EXAMPLE_SELECT,[questions.question_id]).catch(err=>{throw err});      
+                    // 객관식
+                    if(questions.type === "1"){
+                        questions.examples = examples;
+                    }else{  // 주관식 
+                        questions.singleExample= examples[0];
+                    }
+                         // 정상조회 
+                        return res.json({
+                            result : true, 
+                            message : "정상 조회 되었습니다.",
+                            data : questions
+                        }); 
 
-                            if(nType){
-                                // 객관식 
-                                examples.map(it => insertExam.push([rows.insertId, it.content, it.isAnswer]))
-                            }else{
-                                // 주관식 
-                                insertExam.push([rows.insertId, singleExample, 1]);
-                            }
-
-                            const sub = await query(connection, SUB,[insertExam]).catch(err=>{throw err});                   
-                        }catch(err){
-                            console.log(err);
-                           return res.status(500).json(err)
-                        }   
-                    });
-
-              return res.json({
-                  result : true, 
-                  message : "정상등록되었습니다. ",
-                  data : rows                  
-              }); 
+                    }catch(err){
+                        console.log(err);
+                    return res.status(500).json(err)
+                    }   
+                });
 
           }catch(err){
-              console.log(err);
               return res.status(500).json(err)
           }   
       });
   }
-
-
-
-
   module.exports={
      
-      newAction,
+    selectAction,
      
 
   }

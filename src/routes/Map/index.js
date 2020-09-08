@@ -22,7 +22,7 @@ var upload = multer({ storage: storage });
 
 
 // 기본  CRUD  Template 사용 필요시 신규로 생성 
-const {LIST, NEW, DELETE,SELECT} = require("../../query/map"); 
+const {LIST, NEW, DELETE,SELECT} = require("../../query/Map"); 
 
 // 지도 목록 조회
 router.post('/', (req, res)=> listAction(res, LIST));
