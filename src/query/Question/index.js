@@ -14,6 +14,20 @@ SELECT question_id
   
 `;
 
+const ADMIN_LIST = `
+SELECT question_id
+     , title
+     , content
+     , type
+     , map
+     , guide
+     , video
+     , DATE_FORMAT(update_date, "%Y-%m-%d %T") as update_date
+     , useYN
+     , hint
+  FROM QUESTION
+`;
+
 const EXAMPLE_LIST = `
     SELECT T2.example_id 
         , T2.question_id 
@@ -104,7 +118,8 @@ module.exports={
     DELETE,
     SELECT,
     EXAMPLE_LIST,
-    EXAMPLE_SELECT
+    EXAMPLE_SELECT,
+    ADMIN_LIST
     
     
 }

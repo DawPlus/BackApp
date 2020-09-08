@@ -6,12 +6,12 @@ const {listAllAction} = require("./ListAll");
 const { newAction} = require("./New")
 const {selectAction} = require("./Select")
 // 기본  CRUD  Template 사용 필요시 신규로 생성 
-const {LIST, SELECT, DELETE} = require("../../query/Question/");
+const {ADMIN_LIST,  DELETE} = require("../../query/Question/");
 
 
 
 // 문제 목록 조회 조회 
-router.post('/',(req, res)=> listAction(res,LIST));
+router.post('/',(req, res)=> listAction(res,ADMIN_LIST));
 
 
 
