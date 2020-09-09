@@ -9,10 +9,7 @@ module.exports={
         const {originalname, mimetype, destination, filename, path, size} = req.file;
         // File URL 
         const url = urlPrefix+filename;
-    
-        console.log(qr);
-        console.log(originalname)
-        
+            
         db( async (connection)=>{
             try{
                 const row =  await query(connection

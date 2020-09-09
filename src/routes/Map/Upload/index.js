@@ -10,8 +10,6 @@ module.exports={
         // File URL 
         const url = urlPrefix+filename;
     
-        console.log(qr);
-        console.log(originalname)
         
         db( async (connection)=>{
             try{

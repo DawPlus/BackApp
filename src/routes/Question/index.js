@@ -3,8 +3,11 @@ const express   = require('express');
 const router = express.Router();
 const {listAction, deleteAction} = require("../../Action/");
 const {listAllAction} = require("./ListAll");
-const { newAction} = require("./New")
-const {selectAction} = require("./Select")
+const {newAction} = require("./New");
+const {selectAction} = require("./Select");
+const {updateUseYNAction} = require("./Update");
+
+
 // 기본  CRUD  Template 사용 필요시 신규로 생성 
 const {ADMIN_LIST,  DELETE} = require("../../query/Question/");
 
@@ -35,7 +38,16 @@ router.post('/:id', (req, res)=>{
 
 // 문제 삭제 
 router.delete("/:id", (req, res)=>{  
-    const {id} =  req.params
+    const {id} = req.params;
+    if(id === undefined) return res.json({message : "삭제중 오류가 발생하였습니다.", result : false});
     deleteAction(res, DELETE, [id]);
 });
+
+
+// 사용여부 수정 
+router.put("/use", (req, res)=>{
+    updateUseYNAction(req, res);
+});
+
+
 module.exports = router;

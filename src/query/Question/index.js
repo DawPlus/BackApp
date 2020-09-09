@@ -107,9 +107,21 @@ const SUB = `
 
 const DELETE = `
 DELETE 
-  FROM EXMAMPLE 
+  FROM QUESTION 
  WHERE question_id  =  ?
 `;
+
+
+
+const USEYN_UPDATE = `
+    UPDATE QUESTION
+    SET useYN = ?
+    WHERE question_id =?
+`;
+
+
+
+
 
 module.exports={
     LIST,
@@ -119,7 +131,8 @@ module.exports={
     SELECT,
     EXAMPLE_LIST,
     EXAMPLE_SELECT,
-    ADMIN_LIST
+    ADMIN_LIST,
+    USEYN_UPDATE
     
     
 }

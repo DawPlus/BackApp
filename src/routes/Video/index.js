@@ -8,8 +8,7 @@ var fs = require('fs');
 router.post('/',(req, res)=> {
 
     var files = fs.readdirSync(dir); // 디렉토리를 읽어온다
-        console.log(files);
-     
+            
         return res.json({
                 message : "정상 조회 되었습니다.",
                 result : true,
