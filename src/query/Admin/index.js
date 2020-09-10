@@ -8,7 +8,15 @@ const SELECT_ADMIN = `
 
 `;
 
+const UPDATE_PASSWORD = `
+        UPDATE ADMIN_USER
+           SET password      = ?
+             , updateDate    = now()
+         WHERE admin_id      = ? 
+`;
+
+
 module.exports={
-    SELECT_ADMIN
-    
+    SELECT_ADMIN,
+    UPDATE_PASSWORD
 }
