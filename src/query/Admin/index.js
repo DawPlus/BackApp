@@ -11,7 +11,7 @@ const SELECT_ADMIN = `
 const UPDATE_PASSWORD = `
         UPDATE ADMIN_USER
            SET password      = ?
-             , updateDate    = now()
+             , update_date    = now()
          WHERE admin_id      = ? 
 `;
 

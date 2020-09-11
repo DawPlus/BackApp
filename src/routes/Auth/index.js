@@ -6,6 +6,7 @@ const {checkTokkenAction} = require("./CheckTokken");
 
 // 기본  CRUD  Template 사용 필요시 신규로 생성 
 const {SELECT_ADMIN} = require("../../query/Admin");
+const { updateAction } = require('./Update');
 
 
 
@@ -21,6 +22,12 @@ router.post('/check', (req, res)=>{
     const {tokken} = req.body;
     checkTokkenAction(res, SELECT_ADMIN, tokken) ;
 });
+
+// 토큰 검증 
+router.post('/password', (req, res)=>{  
+    updateAction(req, res) ;
+});
+
 
 
 module.exports = router;

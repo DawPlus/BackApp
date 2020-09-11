@@ -3,7 +3,8 @@ const secret  ="expressadmin12341234";
 var getTokken = (userInfo)  =>  jwt.sign({userInfo}  ,secret, {expiresIn: '7d'});
 var isTokken  = (tokken)    =>  jwt.verify(tokken, secret, (err,decoded)=>{
     if(err){ 
-        return err;
+        console.log(err);
+        return null;
     }    
     return decoded;
 });

@@ -15,7 +15,7 @@ module.exports={
                     if(rows[0] === undefined){
                             return res.status(500).json({
                                 result : false,
-                                message : "로그인중 오류가 발생했습니다."
+                                message : "아이디/비밀번호를 확인해 주십시오"
                             });
                             
                     }

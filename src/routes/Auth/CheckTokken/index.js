@@ -31,7 +31,7 @@ module.exports={
                         }
                         const userInfo  = rows[0]; 
                         const tokken    =  getTokken(userInfo);
-                     
+                        console.log(userInfo);
                         return res.json({
                             result : true, 
                             message : "새로고침 되었습니다.",
