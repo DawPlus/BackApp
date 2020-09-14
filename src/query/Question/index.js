@@ -121,6 +121,26 @@ const USEYN_UPDATE = `
 
 
 
+const UPDATE = `
+    UPDATE QUESTION
+       SET title        = ?
+         , content      = ?
+         , map          = ?
+         , guide        = ?
+         , video        = ?
+         , hint         = ?
+         , update_date  = sysdate()
+    WHERE question_id   = ?
+
+`;
+
+const UPDATE_EXAM = `
+    UPDATE EXAMPLE
+       SET content      = ?
+         , isAnswer     = ?
+    WHERE example_id    = ?;
+`;
+
 
 
 module.exports={
@@ -132,7 +152,9 @@ module.exports={
     EXAMPLE_LIST,
     EXAMPLE_SELECT,
     ADMIN_LIST,
-    USEYN_UPDATE
+    USEYN_UPDATE,
+    UPDATE,
+    UPDATE_EXAM
     
     
 }

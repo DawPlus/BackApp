@@ -8,7 +8,8 @@ const pool = mysql.createPool({
   port            :  "3306",
   password        :  "forest113*",
   database        :  "dbforesthealing113",
-  connectionLimit :  "10"
+  connectionLimit :  "10",
+  multipleStatements: true
 });
 logger.info('Connection pool created.');
 

@@ -5,7 +5,7 @@ const {listAction, deleteAction} = require("../../Action/");
 const {listAllAction} = require("./ListAll");
 const {newAction} = require("./New");
 const {selectAction} = require("./Select");
-const {updateUseYNAction} = require("./Update");
+const {updateUseYNAction, updateAction, updateExamAction} = require("./Update");
 
 
 // 기본  CRUD  Template 사용 필요시 신규로 생성 
@@ -49,5 +49,17 @@ router.put("/use", (req, res)=>{
     updateUseYNAction(req, res);
 });
 
+
+
+// 문제수정
+router.put("/", (req,res) =>{
+    console.log("Update Action ! ")
+    updateAction(req, res);
+});
+
+// 보기수정
+router.put("/exam", (req,res) =>{
+    updateExamAction(req, res);
+});
 
 module.exports = router;
