@@ -119,9 +119,7 @@ const {USEYN_UPDATE, UPDATE, UPDATE_EXAM} = require("../../../query/Question/");
                     sub = await query(connection, UPDATE_EXAM, [singleExample.content, 1, singleExample.example_id]).catch(err=>{throw err});                   
                 }
                     
-                console.log(sub);
-
-                return res.json({
+                 return res.json({
                     message : "정상 수정 되었습니다 ",
                     result : true,
                     data : sub
