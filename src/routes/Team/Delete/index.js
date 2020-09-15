@@ -10,21 +10,17 @@ module.exports={
         db( async (connection)=>{
             try{
                 const rows = await query(connection, LIST, [id]).catch(err=>{throw err});
-                // 조회결과가 없을경우 
-                if(rows.length === 0 || rows[0] === undefined){
-                     return res.json({
-                      result : true ,
-                      message : "조회결과가 없습니다. ",
-                      data : []
-                  });
-                 }
-                 
+
+                // 조회결과가 있을경우 
+                if(rows.length !== 0 || rows[0] !== undefined){                 
                  // 스크린샷 목록 으로  파일을 삭제한다. 
-                 rows.map(it=> {
-                     fs.unlink(it.path,(err)=>{
-                         console.log(err);
-                     });
-                 })
+                     rows.map(it=> {
+                        fs.unlink(it.path,(err)=>{
+                            console.log(err);
+                        });
+                    })
+               
+                 }
                 // 마스터 테이블을 삭제한다. 
                 // 문제 수정 
                 db( async (connection)=>{
