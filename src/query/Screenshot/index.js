@@ -7,10 +7,10 @@ const LIST = `
         , path
         , size      
         , url
-        , team_id
+        , teamId
         , save_date
     FROM SCREENSHOT
-   WHERE team_id = ?
+   WHERE teamId= ?
 `;
 
 const NEW = `
@@ -22,7 +22,7 @@ const NEW = `
          , path
          , size
          , url
-         , team_id
+         , teamId
     )VALUES(
            ?
          , ?
@@ -38,7 +38,7 @@ const NEW = `
 
 const DELETE = `
 DELETE FROM SCREENSHOT
-        WHERE FILE_ID = ?
+        WHERE FILE_ID = ?;
 `;
 
 module.exports={

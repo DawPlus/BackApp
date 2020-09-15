@@ -2,7 +2,8 @@
 const express   = require('express');
 const router = express.Router();
 
-const {newAction, selectAction,  listAction, deleteAction, updateAction} = require("../../Action/");
+const {newAction, selectAction,  listAction,  updateAction} = require("../../Action/");
+const { deleteAction} = require("./Delete");
 const {LIST, NEW, SELECT, UPDATE, DELETE}  = require("../../query/Team");
 
 // 팀 목록 조회 조회 
@@ -25,8 +26,10 @@ router.post('/:id', (req, res)=>{
 
 // 팀 삭제 
 router.delete("/:id", (req, res)=>{  
+
     const {id} =  req.params
-    deleteAction(res, DELETE, [id]);
+    
+    deleteAction(req, res, id);
 });
 
 // 팀 수정

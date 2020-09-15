@@ -53,7 +53,6 @@ router.put("/use", (req, res)=>{
 
 // 문제수정
 router.put("/", (req,res) =>{
-    console.log("Update Action ! ")
     updateAction(req, res);
 });
 
